@@ -1,0 +1,33 @@
+<div ng-controller="tasksCtrl">
+	<h1>Tasks</h1>
+	<div ng-repeat="task in tasks">
+		<div>
+			{{ task.title }}
+		</div>
+		<div>
+			{{ task.entry }}
+		</div>
+		<div>
+			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="delete(task)">delete</button>
+			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="edit(task)">edit</button>
+			<button ng-click="details(task)">details</button>
+		</div>
+	</div>
+	<div  ng-if="isLoggedIn()">
+	<hr/>
+	<h2>New task</h2>
+	<table>
+		<tr>
+			<td>title:</td>
+			<td><input type="text" ng-model="task.title"></td>
+		</tr>
+		<tr>
+			<td>entry:</td>
+			<td><textarea rows="4" cols="50" ng-model="task.entry"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" aling="center"><button ng-click="save()">submit</button></td>
+		</tr>
+	</table>
+	</div>
+</div>

@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var Task = require(__dirname + '/app/model/task');
 var Comment = require(__dirname + '/app/model/comment');
 var User        = require(__dirname + '/app/model/user');
+var Project = require(__dirname + '/app/model/project');
 var passport  = require('passport');
 var config = require(__dirname+'/config/database'); // get db config file
 var jwt = require('jwt-simple');
@@ -26,7 +27,7 @@ var port = process.env.PORT || 8080; // na kom portu slusa server
 
 var userRouter = express.Router(); // koristimo express Router
 // create a new user account (POST http://localhost:8080/api/signup)
-userRouter.post('/signup', function(req, res) {
+userRouter.post('/register', function(req, res) {
   if (!req.body.name || !req.body.password) {
     res.json({success: false, msg: 'Please pass name and password.'});
   } else {
@@ -82,8 +83,13 @@ userRouter.post('/signup', function(req, res) {
   } else {
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
-});
+})
+.get('/', function(req, res) {
 
+  User.find().exec(function(err, data, next) {
+    res.json(data);
+  });
+});
 var getToken = function (headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');
@@ -96,6 +102,20 @@ var getToken = function (headers) {
     return null;
   }
 };
+
+//ruter za project
+var projectRouter = express.Router(); //koristimo express Router
+
+//definisanje ruta za projekat
+projectRouter
+.get('/', function(req, res) {
+
+  Project.find().exec(function(err, data, next) {
+    res.json(data);
+  });
+});
+
+
 
 // ruter za task
 var taskRouter = express.Router(); // koristimo express Router
@@ -191,6 +211,8 @@ commentRouter
 
 // dodavanje rutera za user /api/user
 app.use('/api/users', userRouter);
+
+app.use('/api/projects', projectRouter);
 
 app.use('/api/tasks', taskRouter);
 

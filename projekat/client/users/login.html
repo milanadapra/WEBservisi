@@ -1,17 +1,28 @@
 <div>
-	<form ng-submit="login()">
-		<table>
-			<tr>
-				<td>username:</td>
-				<td><input type="text" ng-model="user.name"/></td>
-			</tr>
-			<tr>
-				<td>password:</td>
-				<td><input type="text" ng-model="user.password"/></td>
-			</tr>
-			<tr>
-				<td colspan="2" aling="center"><input type="submit" value="log in"/></td>
-			</tr>
-		</table>
+	<form class="formUser" ng-submit="login()">
+		<h2><b> User login  </b></h2> <br>
+
+		<div class="col-xs-4 form-group">
+    		<label class="col-sm-2 control-label" for="lg">Username: </label> <br>
+			<div class="col-xs-4">
+			<input type="text" ng-model="user.name" placeholder="Username" class="form-control" required/> <br>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-xs-4 form-group">
+			<label class="col-sm-2 control-label" for="lg">Password: </label> <br>
+			<div class="col-xs-4">
+		<input type="password" ng-model="user.password" placeholder="Password" class="form-control" required/> <br>
+		</div>
+		</div>
+
+		<div class="col-sm-10">
+		<input type="submit" value="log in" class="btn btn-primary"/>
+		</div>
 	</form>
+
+	<div class="col-md-offset-2 col-md-8">
+        
+    </div>
+
 </div>

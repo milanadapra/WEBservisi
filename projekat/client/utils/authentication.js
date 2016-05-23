@@ -8,6 +8,7 @@
 
         service.login = login;
         service.logout = logout;
+        service.register = register;
         service.getCurrentUser = getCurrentUser;
 
         return service;
@@ -34,6 +35,14 @@
                         callback(false);
                     }
                 });
+        }
+
+        function register(username, password) {
+            $http.post('/api/users/register', {name: username, password: password})
+            .success(function(response){
+              
+                $state.go('login');
+            });
         }
 
         function logout() {

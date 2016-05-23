@@ -1,0 +1,40 @@
+<div>
+	<form class="formUser" ng-submit="register()">
+		<h2><b> User register  </b></h2> <br>
+
+		<!-- Username field -->
+		<div class="col-xs-4 form-group">
+    		<label class="col-sm-2 control-label" for="lg">Username: </label> <br>
+			<div class="col-xs-4">
+			<input type="text" ng-model="user.name" placeholder="Username" class="form-control" required/> <br>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<!-- Password field -->
+		<div class="col-xs-4 form-group">
+			<label class="col-sm-2 control-label" for="lg">Password: </label> <br>
+			<div class="col-xs-4">
+		<input type="password" ng-model="user.password" id="pass1" placeholder="Password" class="form-control" required/> <br>
+		</div>
+		</div>
+
+		<div class="clearfix"></div>
+		<!-- Password retype field -->
+		<div class="col-xs-4 form-group">
+			<label class="col-sm-2 control-label" for="lg">Confirm password: </label> <br>
+			<div class="col-xs-4">
+		<input type="password" id="pass2" onkeyup="proveri(); return false;" placeholder="Confirm password" class="form-control" required/> <br>
+		<span id="confirmMessage" class="confirmMessage"></span>
+		</div>
+		</div>
+
+		<div class="col-sm-10">
+		<input disabled="disabled"  id="confirm" type="submit" value="register" class="btn btn-primary"/>
+		</div>
+	</form>
+
+	<div class="col-md-offset-2 col-md-8">
+        
+    </div>
+
+</div>

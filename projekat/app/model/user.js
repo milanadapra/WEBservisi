@@ -15,7 +15,9 @@ var UserSchema = new Schema({
         required: true
     },
     role: {
-        type: String
+        type: String,
+        required: true,
+        default: "user"
     }
 });
  

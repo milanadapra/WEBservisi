@@ -1,0 +1,17 @@
+<div ng-if="isLoggedIn()"  ng-controller="commentCtrl">
+	<h2>New comment</h2>
+		<table>
+			<tr>
+				<td>
+					<input type="text" ng-model="comment.signeBy" value="{{currentUser.name}}">
+				</td> 
+			</tr>
+
+			<tr>
+				<td><textarea rows="4" cols="50" ng-model="comment.text" placeholder="Add comment here."></textarea></td>
+			</tr>
+			<tr>
+				<td align="right"><button ng-click="save(task)" class="btn btn-primary">Comment</button></td>
+			</tr>
+		</table>
+</div>

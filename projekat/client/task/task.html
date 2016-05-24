@@ -1,0 +1,23 @@
+<div class="content">
+	<div class="items">
+		<h2>Zadatak {{task._id}}</h2>
+		<div>{{task.title}}</div>
+		<div>{{task.createdAt | date:'dd.MM.yyyy. HH:mm:ss'}}</div>
+		<div>{{task.entry}}</div>
+	</div>
+
+	</br>
+	</br>
+	<div ng-include="'comments/commentForm.html'" style="padding-left: 20px;">
+	</div>
+
+	</br>
+	<div ng-if="task.comments && task.comments.length>0" class="items">
+		<div>
+			<div ng-repeat="comment in task.comments"
+				ng-include="'comments/comment.html'">
+			</div>
+		</div>
+	</div>
+	
+</div>

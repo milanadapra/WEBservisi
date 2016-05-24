@@ -1,0 +1,12 @@
+<div class="comment">
+	<b>{{comment.signedBy}}</b>
+	</br>
+	<p>{{comment.text}}</p>
+	<div class="comment" ng-if="comment.comments">
+		<div ng-repeat="comment in comment.comments"
+			ng-include="'comments/comment.html'">
+		</div>
+	</div>
+	</br>
+	Posted on {{comment.createdAt}}
+</div>

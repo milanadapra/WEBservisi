@@ -1,0 +1,22 @@
+<div class="row">
+				<div class="col-md-offset-5 col-md-3">
+					<div class="form-login">
+					<form ng-submit="register()">
+						<h4>Registration</h4>
+						<input type="text" ng-model="user.name" placeholder="Username" class="form-control" required/> <br>
+						</br>
+						<input type="password" ng-model="user.password" id="pass1" placeholder="Password" class="form-control" required/> <br>
+						</br>
+						<input type="password" id="pass2" onkeyup="proveri(); return false;" placeholder="Confirm password" class="form-control" required/> <br>
+						<div class="wrapper">
+							<span class="group-btn"> 	
+								<input id="confirm" type="submit" value="register" class="btn btn-primary" disabled/>
+							</span>
+						</div>
+						</br>
+					</form>
+					</div>
+        
+				</div>
+		</div>
+

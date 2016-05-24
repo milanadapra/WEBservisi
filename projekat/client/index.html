@@ -2,7 +2,8 @@
 	<head>
 		 <!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+		<link rel="stylesheet" href="lib/bootstrap/css/style.css">
+		
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
@@ -17,8 +18,8 @@
 		<script src="task/task.js"></script>
 		<script src="comments/commentResource.js"></script>
 		<script src="comments/comment.js"></script>
-		<!--<script src="projects/project.js"></script> -->
-		<!--<script src="projects/projectResource.js"></script> -->
+		<script src="projects/project.js"></script> -->
+		<script src="projects/projectResource.js"></script> -->
 		<script src="utils/authentication.js"></script>
 		<script src="users/login.js"></script>
 		<script src="users/register.js"></script>
@@ -47,11 +48,30 @@
 		</script>
 	</head>
 	<body ng-app="app">
-		<button ng-if="isLoggedIn()" ng-click="logout()">log out</button>
-		<a ng-if="!isLoggedIn()&&getCurrentState()!=='login'" ui-sref="login"><button>Log in</button></a>
-
-		<a ng-if="!isLoggedIn()&&getCurrentState()!=='register'" ui-sref="register"><button>Sign up</button></a>
-
-		<div ui-view> </div>
+	<div class="container">
+	
+	<div class="col-sm-2" ng-if="isLoggedIn()">
+            <nav class="nav-sidebar">
+				<ul class="nav">
+                    <li><a>Projects</a></li>
+                    <li><a >Tasks</a></li>
+                    <li><a>People</a></li>
+                    <li class="nav-divider"></li>
+                    <li><img src="images/out.png" width="30"> <button class="btn btn-primary" ng-click="logout()">log out</button> </li>
+                </ul>
+			</nav>
+	</div>
+	
+		<!--<div class="form-login" ng-if="!isLoggedIn()&&getCurrentState()!=='login'" >
+			<div class="wrapper">
+				<a ui-sref="login"><button class="btn btn-primary">Confirm you are 18+</button></a>
+			</div>
+		</div>
+	-->
+		<div ui-view>
+		</div>
+	
+	
+	</div>
 	</body>
 </html>

@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 var port = process.env.PORT || 8080; // na kom portu slusa server
 
+//ruter za korisnika
 
 var userRouter = express.Router(); // koristimo express Router
 // create a new user account (POST http://localhost:8080/api/signup)
@@ -108,10 +109,35 @@ var projectRouter = express.Router(); //koristimo express Router
 
 //definisanje ruta za projekat
 projectRouter
+.get('/:id', function(req, res, next) {
+  Project.findOne({
+    "_id": req.params.id
+  }).populate('tasks').exec(function(err, entry) {
+      // ako se desila greska predjemo na sledeci middleware (za rukovanje greskama)
+      if (err) next(err);
+      res.json(entry);
+    });
+})
 .get('/', function(req, res) {
 
-  Project.find().exec(function(err, data, next) {
+   var entry={};
+  if (req.query.title) {
+    entry={title: new RegExp(req.query.title, "i")};
+  }
+  if (req.query.createdOn){
+    entry={entry: new RegExp(req.query.createdOn,'i')};
+  }
+  Project.find(entry).populate('tasks').exec(function(err, data, next) {
     res.json(data);
+  });
+})
+.post('/', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+  var project = new Project(req.body);
+  project.save(function(err, entry) {
+    if (err) next(err);
+
+    res.json(entry);
+
   });
 });
 

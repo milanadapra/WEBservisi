@@ -1,1 +1,15 @@
-<!--project.html-->
+<div>
+	<h2> Project </h2>
+	<div>{{project.title}}</div>
+	<div>{{project.createdOn | date:'dd.MM.yyyy. HH:mm:ss'}}</div>
+</div>
+<div ng-if="project.tasks && project.tasks.length>0">
+	<h2>Tasks:</h2>
+	<ul>
+		<li ng-repeat="task in project.tasks"
+			ng-include="'task/task.html'">
+		</li>
+	</ul>
+</div>
+<div ng-include="'task/tasks.html'">
+</div>

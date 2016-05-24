@@ -1,0 +1,119 @@
+
+body {
+	/*background-image: url("images/background.jpg");*/
+	-webkit-font-smoothing: antialiased;
+	font: normal 14px Roboto,arial,sans-serif;
+ 	background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: 100% auto; 
+}
+
+.container {
+    padding: 25px;
+    position: relative;
+	float: center;
+}
+
+.item{
+    width: 400px;
+	border-style: solid;
+    border-width: 1px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+.items{
+    padding-left: 20px; padding-right: 20px;
+}
+
+.newItem{
+    position: absolute;
+    top: 1px;
+    bottom:5px; 
+    left: 55%;
+}
+.content{
+	position: absolute;
+	width: 80%;
+	left: 200px;
+	background-color: #EDEDED;
+	opacity: 0.9;
+	filter: alpha(opacity=80);
+	padding: 8px 0; 
+}
+
+.form-login a:hover{
+	cursor:pointer;
+}
+
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+	opacity: 0.9;
+	filter: alpha(opacity=80);
+}
+
+h4 { 
+ border:0 solid #fff; 
+ border-bottom-width:1px;
+ padding-bottom:10px;
+ text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.nav-sidebar { 
+    width: 100%;
+    padding: 8px 0; 
+    border-right: 1px solid #ddd;
+	background-color: #EDEDED;
+	opacity: 0.9;
+	filter: alpha(opacity=80);
+}
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+    -webkit-border-radius: 4px 0 0 4px; 
+    -moz-border-radius: 4px 0 0 4px; 
+    border-radius: 4px 0 0 4px; 
+}
+
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: #428bca; 
+    color: #fff; 
+    text-shadow: 1px 1px 1px #666; 
+}
+.nav-sidebar .active a :hover {
+    background-color: #428bca;  
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; 
+}
+

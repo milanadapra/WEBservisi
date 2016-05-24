@@ -7,12 +7,16 @@ var projectSchema = new Schema({
         type: String,
         require: true,
         unique: true
-    },
+      },
     createdOn:{
-		type:Date,
-		default:Date.now,
-		required:true
-	},
+		  type:Date,
+		  default:Date.now,
+		  required:true
+	 },
+    counter:{
+      type:Number,
+      default:0
+    },
     users: [{ type:Schema.Types.ObjectId, ref: 'User'}],
     tasks: [{ type:Schema.Types.ObjectId, ref : 'Task'}]
 });

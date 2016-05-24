@@ -1,25 +1,25 @@
 (function (angular) {
-	var app = angular.module('app',['task','comment','login', 'register','ui.router', 'authentication']);
+	var app = angular.module('app',['task','comment','login', 'register','ui.router', 'authentication','project']);
 	app
     .config(config)
     .run(run);
     function config($stateProvider, $urlRouterProvider) {
-     //  $urlRouterProvider.otherwise('/main');
+     $urlRouterProvider.otherwise('/login');
         $stateProvider
        .state('main', {
           url: '/main',
-          templateUrl: 'task/tasks.html',
-          controller: 'tasksCtrl'
+          templateUrl: 'projects/projects.html',
+          controller: 'projectsCtrl'
       })
-       /*.state('project',{
-        url : '/projects/:id',
-        templateUrl: 'projects/project.html',
-        controller: 'projectCtrl'
-       })*/
        .state('entry', {
           url: '/tasks/:id',
           templateUrl: 'task/task.html',
           controller: 'taskCtrl'
+      })
+       .state('tasks', {
+          url: '/tasks',
+          templateUrl: 'task/tasks.html',
+          controller: 'tasksCtrl'
       })
        .state('login', {
         url: '/login',
@@ -30,6 +30,11 @@
         url: '/register',
         templateUrl: 'users/register.html',
         controller: 'registerCtrl'
+       })
+      .state('project',{
+        url : '/projects/:id',
+        templateUrl: 'projects/project.html',
+        controller: 'projectCtrl'
        });
    }
    function run($rootScope, $http, $location, $localStorage, AuthenticationService, $state) {

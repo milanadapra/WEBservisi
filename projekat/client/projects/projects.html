@@ -1,1 +1,25 @@
-<!--projects.html -->
+<div ng-controller="projectsCtrl">
+	<h1>Projects</h1>
+	<div ng-repeat="project in projects">
+		<div>
+			{{ project.title }}
+			
+		</div>
+		<div>
+			<button ng-click="details(project)"> Details </button>
+		</div>
+	</div>
+	<div  ng-if="getCurrentUserRole()=='admin'">
+	<hr/>
+	<h2>New project</h2>
+	<table>
+		<tr>
+			<td>title:</td>
+			<td><input type="text" ng-model="project.title"></td>
+		</tr>
+		<tr>
+			<td colspan="2" aling="center"><button ng-click="save()">submit</button></td>
+		</tr>
+	</table>
+	</div>
+</div>

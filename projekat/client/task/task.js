@@ -1,14 +1,17 @@
 (function (angular) {
-	angular.module('task',['task.resource'])
-	.controller('tasksCtrl', function($scope, $location, Task) {
+	angular.module('task',['task.resource', 'project.resource'])
+	.controller('tasksCtrl', function($scope,Project, Task,$location) {
 		var loadTasks = function () {
-			$scope.tasks = Task.query();		
+			$scope.tasks = Project.tasks;		
 			$scope.task = new Task();
 		}
 		loadTasks();
-		$scope.save = function () {
+		$scope.save = function(project) {
 			if(!$scope.task._id){
-				$scope.task.$save(loadTasks);
+				$scope.task.$save({'projectId':project._id},function () {
+				loadTasks();
+				project.$get();
+			});
 			}
 			else{
 				$scope.task.$update(loadTasks);				

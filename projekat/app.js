@@ -169,13 +169,16 @@ taskRouter
     res.json(data);
   });
 })
-.post('/', passport.authenticate('jwt', { session: false}), function(req, res, next) {
-  var task = new Task(req.body);
-  task.save(function(err, entry) {
+.post('/project/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+var task = new Task(req.body);
+Project.findOne({"_id":req.params.id},function (err, entry) {
+  task.save(function(err, task) {
     if (err) next(err);
-
-    res.json(entry);
-
+          Project.findByIdAndUpdate(entry._id, {$push:{"tasks":task._id}}, function (err, entry) {
+        if(err) next(err);
+        res.json(entry);
+      });
+    });
   });
 })
 .put('/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {

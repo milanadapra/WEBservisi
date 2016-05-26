@@ -2,7 +2,7 @@
 <div ng-controller="tasksCtrl" class="items">
 	<h1>Tasks</h1>
 	</br>
-	<div ng-repeat="task in tasks" class="item">
+	<div ng-repeat="task in project.tasks" class="item">
 		<table width="400">
 			<tr>
 				<td colspan="2">
@@ -33,7 +33,7 @@
 			<td><textarea rows="4" cols="50" ng-model="task.entry" placeholder="entry"></textarea></td>
 		</tr>
 		<tr>
-			<td align="right"><button ng-click="save()" class="btn btn-primary">submit</button></td>
+			<td align="right"><button ng-click="save(project)" class="btn btn-primary">submit</button></td>
 		</tr>
 	</table>
 	</div>

@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['task','comment','login', 'register','ui.router', 'authentication','project']);
+	var app = angular.module('app',['task','comment','login', 'register','ui.router', 'authentication','project','user']);
 	app
     .config(config)
     .run(run);
@@ -32,9 +32,14 @@
         controller: 'registerCtrl'
        })
       .state('project',{
-        url : '/projects/:id',
+        url : '/projects/tasks/:id',
         templateUrl: 'projects/project.html',
         controller: 'projectCtrl'
+       })
+      .state('projectUser',{
+        url : '/projects/users/:id',
+        templateUrl: 'projects/projectUser.html',
+        controller: 'userCtrl'
        });
    }
    function run($rootScope, $http, $location, $localStorage, AuthenticationService, $state) {

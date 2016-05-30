@@ -17,8 +17,10 @@
 				$scope.task.$update(loadTasks);				
 			}
 		} 
-		$scope.delete = function (task) {
-			task.$delete(loadTasks);
+		$scope.delete = function (task,project) {
+			$scope.task.$delete(task);
+			loadTasks();
+			project.$get();
 		}
 		$scope.edit = function (task) {
 			$scope.task = task;

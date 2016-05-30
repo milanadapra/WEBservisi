@@ -66,6 +66,17 @@ userRouter.post('/register', function(req, res) {
     }
   });
 })
+.post('/project/:projectId/:userId', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+
+var user = User.findOne({'_id':req.params.userId}, function (err, user) {
+Project.findOne({"_id":req.params.projectId},function (err, entry) {
+    Project.findByIdAndUpdate(entry._id, {$push:{"users":user._id}}, function (err, entry) {
+        if(err) next(err);
+        res.json(entry);
+      });
+    });
+  });
+})
 .get('/memberinfo', passport.authenticate('jwt', { session: false}), function(req, res) {
   var token = getToken(req.headers);
   if (token) {
@@ -130,14 +141,13 @@ projectRouter
   Project.find(entry).populate('tasks').exec(function(err, data, next) {
     res.json(data);
   });
+
 })
 .post('/', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var project = new Project(req.body);
   project.save(function(err, entry) {
     if (err) next(err);
-
     res.json(entry);
-
   });
 });
 
@@ -170,6 +180,7 @@ taskRouter
   });
 })
 .post('/project/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+
 var task = new Task(req.body);
 Project.findOne({"_id":req.params.id},function (err, entry) {
   task.save(function(err, task) {

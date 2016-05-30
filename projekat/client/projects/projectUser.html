@@ -1,0 +1,20 @@
+<div class="content">
+<div ng-controller="projectCtrl">
+	<h1>Users on project: {{project.title}}</h1>
+	</br>
+	<div ng-repeat="u in user" class="item" ng-if="u.role=='user'" ng-controller="userCtrl">
+		<table >
+		<tr>
+			<td class="col-md-2">Username: </td>
+			<td class="col-md-2">{{u.name}}</td>
+			<td class="col-md-2">
+			<button ng-if="users.indexOf(u._id)===-1" type="button" class="btn btn-default" ng-click="save2(project, u)">Add</button>
+			<button  ng-if="users.indexOf(u._id)!==-1" type="button" class="btn btn-default" ng-click="">Remove</button>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	</div>
+</div>
+
+</div>

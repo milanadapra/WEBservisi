@@ -1,6 +1,6 @@
 (function (angular) {
-	angular.module('project',['project.resource'])
-	.controller('projectsCtrl', function($scope, $location, Project) {
+	angular.module('project',['project.resource', 'task.resource'])
+	.controller('projectsCtrl', function($scope, $location, Project, Task) {
 		var loadProjects = function () {
 			$scope.projects = Project.query();		
 			$scope.project = new Project();
@@ -15,7 +15,10 @@
 			}
 		} 
 	    $scope.details = function (project) {
-	      $location.path('/projects/'+project._id);
+	     	$location.path('/projects/tasks/'+project._id);
+	    }
+	    $scope.addUsers = function (project) {
+	    	$location.path('/projects/users/'+project._id);
 	    }
 	})
 	.controller('projectCtrl', function($scope, $stateParams, Project){

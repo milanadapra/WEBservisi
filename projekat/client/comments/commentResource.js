@@ -8,7 +8,7 @@
 				save:{//custom post metoda koja postavlja komentar za zapis
 					method:'POST',
 					url:'/api/comments/task/:taskId'
-				}
+				},
 			}
 			);
 		return Comment;

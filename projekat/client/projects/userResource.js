@@ -8,6 +8,10 @@
 				update:{
 					method:'POST',
 					url:'/api/users/project/:projectId/:userId'
+				},
+				removeUser:{
+					method:'DELETE',
+					url:'/api/users/project/:projectId/:userId'
 				}
 			});
 		return User;

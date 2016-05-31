@@ -2,11 +2,17 @@
 	<b>{{comment.signedBy}}</b>
 	</br>
 	<p>{{comment.text}}</p>
+	<p>
+	<div ng-controller="commentCtrl">
+	<button ng-click="del(comment, task)"><img src="images/delete.jpg" width="30"></button>
+	<button ng-click="edit(task,comment)"><img src="images/edit.png" width="30"></button>
+	</div>
+	</p>
 	<div class="comment" ng-if="comment.comments">
 		<div ng-repeat="comment in comment.comments"
 			ng-include="'comments/comment.html'">
 		</div>
 	</div>
 	</br>
-	Posted on {{comment.createdAt}}
+	Posted on {{comment.createdAt.replace('T',' ').replace('Z','')}}
 </div>

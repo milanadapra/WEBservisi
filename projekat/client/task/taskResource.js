@@ -5,7 +5,7 @@
 			{_id:'@_id'},
 			{
 				update:{method:'PUT'},
-				save:{//custom post metoda koja postavlja komentar za zapis
+				save:{
 					method:'POST',
 					url:'/api/tasks/project/:projectId'
 				}

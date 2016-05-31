@@ -67,7 +67,6 @@ userRouter.post('/register', function(req, res) {
   });
 })
 .post('/project/:projectId/:userId', passport.authenticate('jwt', { session: false}), function(req, res, next) {
-
 var user = User.findOne({'_id':req.params.userId}, function (err, user) {
 Project.findOne({"_id":req.params.projectId},function (err, entry) {
     Project.findByIdAndUpdate(entry._id, {$push:{"users":user._id}}, function (err, entry) {
@@ -97,9 +96,18 @@ Project.findOne({"_id":req.params.projectId},function (err, entry) {
   }
 })
 .get('/', function(req, res) {
-
   User.find().exec(function(err, data, next) {
     res.json(data);
+  });
+})
+.delete('/project/:projectId/:userId', function (req, res, next) {
+  var user = User.findOne({'_id':req.params.userId}, function (err, user) {
+Project.findOne({"_id":req.params.projectId},function (err, entry) {
+    Project.findByIdAndUpdate(entry._id, {$pull:{"users":user._id}}, function(err, successIndicator) {
+    if (err) next(err);
+    res.json(successIndicator);
+      });
+    });
   });
 });
 var getToken = function (headers) {

@@ -3,10 +3,8 @@
 	</br>
 	<p>{{comment.text}}</p>
 	<p>
-	<div ng-controller="commentCtrl">
-	<button ng-click="del(comment, task)"><img src="images/delete.jpg" width="30"></button>
-	<button ng-click="edit(task,comment)"><img src="images/edit.png" width="30"></button>
-	</div>
+	<button ng-click="delete(task,comment)"><img src="images/delete.jpg" width="30"></button>
+	<button ng-click="edit(comment)"><img src="images/edit.png" width="30"></button>
 	</p>
 	<div class="comment" ng-if="comment.comments">
 		<div ng-repeat="comment in comment.comments"

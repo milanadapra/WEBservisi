@@ -188,7 +188,6 @@ taskRouter
   });
 })
 .post('/project/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
-
 var task = new Task(req.body);
 Project.findOne({"_id":req.params.id},function (err, entry) {
   task.save(function(err, task) {
@@ -231,12 +230,36 @@ Project.findOne({"_id":req.params.id},function (err, entry) {
     if (err) next(err);
     res.json(successIndicator);
   });
+})
+.delete('/project/:projectId/:taskId', function(req, res, next) {
+  var task = Task.findOne({'_id':req.params.taskId}, function (err, task) {
+Project.findOne({"_id":req.params.projectId},function (err, entry) {
+    Project.findByIdAndUpdate(entry._id, {$pull:{"tasks":task._id}}, function(err, successIndicator) {
+    if (err) next(err);
+    res.json(successIndicator);
+      });
+    });
+  });
 });
 
 // ruter za comments
 var commentRouter = express.Router(); // koristimo express Router
 
 commentRouter
+.get('/:id', function(req, res, next) {
+  Comment.findOne({
+    "_id": req.params.id
+  }).exec(function(err, entry) {
+      // ako se desila greska predjemo na sledeci middleware (za rukovanje greskama)
+      if (err) next(err);
+      res.json(entry);
+    });
+})
+.get('/', function(req, res) {
+  Comment.find().exec(function(err, data, next) {
+    res.json(data);
+  });
+})
 .post('/task/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var comment = new Comment(req.body);
   Task.findOne({"_id":req.params.id},function (err, entry) {
@@ -250,11 +273,46 @@ commentRouter
     });
   });
 })
+.delete('/task/:taskId/:commentId', function (req, res, next) {
+var comment = Comment.findOne({'_id':req.params.commentId}, function (err, comment) {
+Task.findOne({"_id":req.params.taskId},function (err, entry) {
+    Task.findByIdAndUpdate(entry._id, {$pull:{"comments":comment._id}}, function(err, successIndicator) {
+    if (err) next(err);
+    res.json(successIndicator);
+      });
+    });
+  });
+})
 .delete('/:id', function (req, res, next) {
   Comment.remove({"_id":req.params.id},function (err, successIndicator) {
     if(err) next(err);
     res.json(successIndicator);
   });
+})
+.put('/:id',  function(req, res, next) {
+  console.log("usao!");
+  var token = getToken(req.headers);
+  if (token) {
+    var decoded = jwt.decode(token, config.secret);
+    if(!decoded.role||decoded.role!=='admin'){
+      return res.status(403).send({success: false, msg: 'Not allowed.'});    
+    }
+    Comment.findOne({
+      "_id": req.params.id
+    }, function(err, comment) {
+      if (err) next(err);
+      var newEntry = req.body;
+      comment.text = newEntry.text;
+      comment.signedBy = newEntry.signedBy;
+      comment.save(function(err, comment) {
+        if (err) next(err);
+        res.json(comment);
+      });
+    });
+  }
+  else{
+    return res.status(403).send({success: false, msg: 'Not allowed.'});    
+  }
 });
 
 // dodavanje rutera za user /api/user

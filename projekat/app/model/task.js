@@ -16,6 +16,14 @@ var taskSchema = new Schema({
     type: String,
     required: false
   },
+  priority:{
+    name:{
+      type:String
+    },
+    value:{
+      type:Number
+    }
+  },
   createdAt: Date,
   // napomena! komentari su u ovom primeru implementirani kao reference zbog ilustracije rada sa referencama
   // u realnom sluacju bolje bi bilo implementirati ih kao poddokumente

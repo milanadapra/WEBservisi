@@ -4,6 +4,17 @@
 		var loadTasks = function () {
 			$scope.tasks = Project.tasks;		
 			$scope.task = new Task();
+
+			 $scope.priority = [
+        		 {id: 1, name: 'Blocker'},
+       			 {id: 2, name: 'Critical'},
+       			 {id: 3, name: 'Major'},
+       			 {id: 4, name: 'Minor'},
+        		 {id: 5, name: 'Trivial'}
+    		];
+
+    		$scope.task.priority = { id: 5, name: 'Trivial' };
+    		
 		}
 		loadTasks();
 		$scope.save = function(project) {
@@ -30,6 +41,9 @@
 	    $scope.details = function (task) {
 	      $location.path('/tasks/'+task._id);
 	    }
+
+	   
+
 	})
 	.controller('taskCtrl', function($scope, $stateParams, Task){
 		var taskId = $stateParams.id;

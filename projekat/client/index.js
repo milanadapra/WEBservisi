@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['task','comment','login', 'register','ui.router', 'authentication','project','user']);
+	var app = angular.module('app',['ui.select','task','comment','login', 'register','ui.router', 'authentication','project','user']);
 	app
     .config(config)
     .run(run);

@@ -13,9 +13,8 @@ var projectSchema = new Schema({
 		  default:Date.now,
 		  required:true
 	 },
-    counter:{
-      type:Number,
-      default:0
+    mark:{
+      type:String
     },
     users: [{ type:Schema.Types.ObjectId, ref: 'User'}],
     tasks: [{ type:Schema.Types.ObjectId, ref : 'Task'}]
@@ -27,6 +26,9 @@ projectSchema.pre('save', function(next) {
   var currentDate = new Date();
 
   this.createdAt = currentDate;
+
+  var str = this.title.match(/\b(\w)/g);
+    this.mark = str.join('');
 
   // predjemo na sledecu funckiju u lancu
   next();

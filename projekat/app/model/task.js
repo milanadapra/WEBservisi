@@ -17,11 +17,11 @@ var taskSchema = new Schema({
     required: false
   },
   priority:{
+    id:{
+      type:Number
+    },
     name:{
       type:String
-    },
-    value:{
-      type:Number
     }
   },
   createdAt: Date,

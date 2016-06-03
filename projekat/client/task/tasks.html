@@ -27,19 +27,21 @@
 	<h2>New task</h2>
 	<table>  
 		<tr>
-			<!-- <td><input type="text" ng-model="task.mark" ng-init="task.mark = project.title" readonly></td> -->
+			<td><input type="text" ng-model="task.mark" ng-init="task.mark = project.mark + '-' + (project.tasks.length +1)" readonly></td>
 		</tr>
 		<tr>
 			<td><input type="text" ng-model="task.title" placeholder="title"></td>
 		</tr>
 		<tr><td>
-		 <ui-select ng-model="task.priority">
-		  <ui-select-match placeholder="Select or search a superhero in the list..."></ui-select-match>
-  				<ui-select-choices value="volvo">Volvo</ui-select-choices>
-  				<ui-select-choices value="saab">Saab</ui-select-choices>
-  				<ui-select-choices value="mercedes">Mercedes</ui-select-choices>
-  				<ui-select-choices value="audi">Audi</ui-select-choices>
-		</ui-select> </td>
+			<ui-select ng-model="task.priority">
+    			<ui-select-match>
+       			 	<span ng-bind="$select.selected.name"></span>
+    			</ui-select-match>
+   			 		<ui-select-choices repeat="item in (priority | filter: $select.search) track by item.id">
+       					 <span ng-bind="item.name"></span>
+    				</ui-select-choices>
+			</ui-select>
+		</td>
 		</tr>
 		<tr>
 			<td><textarea rows="4" cols="50" ng-model="task.entry" placeholder="entry"></textarea></td>

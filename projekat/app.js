@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+
 // koristimo mongoose model koju smo kreirali u folderu model
 var Task = require(__dirname + '/app/model/task');
 var Comment = require(__dirname + '/app/model/comment');

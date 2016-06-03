@@ -1,11 +1,14 @@
 <div ng-controller="projectsCtrl">
 	<h1>Projects</h1>
 	<div ng-repeat="project in projects">
-		<div>
-			{{ project.title }}
-			
+		<div ng-if="getCurrentUserRole() == 'admin'">
+			{{ project.title }}			
 		</div>
-		<div>
+			<div ng-if="project.users.indexOf(getCurrentUserId())!==-1">
+				{{ project.title }}
+				<button ng-click="details(project)"> Add tasks </button>
+			</div>
+		<div  ng-if="getCurrentUserRole()=='admin'">
 			<button ng-click="details(project)"> Add tasks </button>
 			<button ng-click="addUsers(project)"> Add users </button>
 		</div>

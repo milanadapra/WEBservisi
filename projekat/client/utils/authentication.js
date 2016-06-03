@@ -24,6 +24,9 @@
                         if(tokenPayload.role){
                             currentUser.role = tokenPayload.role;
                         }
+                        if(tokenPayload._id){
+                            currentUser._id = tokenPayload._id;
+                        }
                         $localStorage.currentUser = currentUser;
                         // jwt token dodajemo u to auth header za sve $http zahteve
                         $http.defaults.headers.common.Authorization = response.token;

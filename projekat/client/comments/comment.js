@@ -17,10 +17,9 @@
 			});	
 			}
 			else {
-
-				$scope.comment.$update({'taskId':task._id, 'commentId':$scope.comment._id},function(){
-					loadComments();
-				});	
+				console.log("dosaoo");
+				$scope.comment.$update();	
+				console.log("prosao update");	
 			}
 
 		} 

@@ -214,6 +214,11 @@ Project.findOne({"_id":req.params.id},function (err, entry) {
       var newEntry = req.body;
       task.title = newEntry.title;
       task.entry = newEntry.entry;
+      task.createdBy = newEntry.createdBy;
+      task.assignedTo = newEntry.assignedTo;
+      task.priority = newEntry.priority;
+      task.status = newEntry.status;
+      task.title = newEntry.title;
       task.save(function(err, task) {
         if (err) next(err);
         res.json(task);
@@ -274,6 +279,21 @@ commentRouter
     });
   });
 })
+.put('/:id', passport.authenticate('jwt', { session: false}),  function(req, res, next) {
+  console.log("usao!");
+    Comment.findOne({
+      "_id": req.params.id
+    }, function(err, comment) {
+      if (err) next(err);
+      var newEntry = req.body;
+      comment.text = newEntry.text;
+      comment.signedBy = newEntry.signedBy;
+      comment.save(function(err, comment) {
+        if (err) next(err);
+        res.json(comment);
+      });
+    });
+  })
 .delete('/task/:taskId/:commentId', function (req, res, next) {
 var comment = Comment.findOne({'_id':req.params.commentId}, function (err, comment) {
 Task.findOne({"_id":req.params.taskId},function (err, entry) {
@@ -289,32 +309,8 @@ Task.findOne({"_id":req.params.taskId},function (err, entry) {
     if(err) next(err);
     res.json(successIndicator);
   });
-})
-.put('/:id',  function(req, res, next) {
-  console.log("usao!");
-  var token = getToken(req.headers);
-  if (token) {
-    var decoded = jwt.decode(token, config.secret);
-    if(!decoded.role||decoded.role!=='admin'){
-      return res.status(403).send({success: false, msg: 'Not allowed.'});    
-    }
-    Comment.findOne({
-      "_id": req.params.id
-    }, function(err, comment) {
-      if (err) next(err);
-      var newEntry = req.body;
-      comment.text = newEntry.text;
-      comment.signedBy = newEntry.signedBy;
-      comment.save(function(err, comment) {
-        if (err) next(err);
-        res.json(comment);
-      });
-    });
-  }
-  else{
-    return res.status(403).send({success: false, msg: 'Not allowed.'});    
-  }
 });
+
 
 // dodavanje rutera za user /api/user
 app.use('/api/users', userRouter);

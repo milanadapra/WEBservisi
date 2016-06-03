@@ -14,7 +14,18 @@
     		];
 
     		$scope.task.priority = { id: 5, name: 'Trivial' };
-    		
+
+    		$scope.status = [
+    		{id: 1, name:'To Do'},
+    		{id: 2, name:'In Progress'},
+    		{id: 3, name:'Verify'},
+    		{id: 4, name:'Done'}
+    		];
+
+    		$scope.task.status = { id: 1, name:'To Do' };
+
+    		$scope.task.mark = Task.mark;
+
 		}
 		loadTasks();
 		$scope.save = function(project) {
@@ -25,7 +36,10 @@
 			});
 			}
 			else{
-				$scope.task.$update(loadTasks);				
+				$scope.task.$update(function(){
+				loadTasks();
+				project.$get();
+				});				
 			}
 		} 
 		$scope.delete = function (ta, project) {

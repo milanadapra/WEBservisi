@@ -12,9 +12,11 @@ var taskSchema = new Schema({
     type: String,
     required: true
   },
-  mark: {
-    type: String,
-    required: false
+  createdBy:{
+    type: String
+  },
+  assignedTo:{
+    type:String
   },
   priority:{
     id:{
@@ -23,6 +25,13 @@ var taskSchema = new Schema({
     name:{
       type:String
     }
+  },
+  status:{
+    id:{
+      type:Number
+    },
+    name:{
+      type:String}
   },
   createdAt: Date,
   // napomena! komentari su u ovom primeru implementirani kao reference zbog ilustracije rada sa referencama

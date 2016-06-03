@@ -6,13 +6,21 @@
 		<table width="400">
 			<tr>
 				<td colspan="2">
-					<h3>{{ task.title }}</h3>
+					<h3>Task mark: {{task.mark}}</h3>
 				</td>
 			</tr>
 			<tr>
-				<td width="200">
-					{{ task.entry }}
+				<td>
+					Title: {{task.title}}
 				</td>
+			</tr>
+			<tr>
+				<td >
+					Priority: {{task.priority.name}}</td>
+			</tr>
+			<tr>
+				<td >
+					Status: {{task.status.name}}</td>
 			</tr>
 		</table>
 		<div style="position:relative; bottom:5px; left: 60%;">
@@ -27,7 +35,8 @@
 	<h2>New task</h2>
 	<table>  
 		<tr>
-			<td><input type="text" ng-model="task.mark" ng-init="task.mark = project.mark + '-' + (project.tasks.length +1)" readonly></td>
+			<td><input type="hidden" ng-model="task.mark" ng-init="task.mark = project.mark + '-' + (project.tasks.length +1)" readonly>
+			</td>
 		</tr>
 		<tr>
 			<td><input type="text" ng-model="task.title" placeholder="title"></td>
@@ -42,6 +51,30 @@
     				</ui-select-choices>
 			</ui-select>
 		</td>
+		</tr>
+
+		<tr><td>
+			<ui-select ng-model="task.status">
+    			<ui-select-match>
+       			 	<span ng-bind="$select.selected.name"></span>
+    			</ui-select-match>
+   			 		<ui-select-choices repeat="item in (status | filter: $select.search) track by item.id">
+       					 <span ng-bind="item.name"></span>
+    				</ui-select-choices>
+			</ui-select>
+		</td>
+		</tr>
+		<tr>
+			<td><ui-select ng-model="task.assignedTo">
+    			<ui-select-match>
+       			 	<span ng-bind="$select.selected"></span>
+    			</ui-select-match>
+   			 		<ui-select-choices repeat="item in (project.users | filter: $select.search)">
+       					 <span ng-bind="item"></span>
+    				</ui-select-choices>
+			</ui-select>
+				<input type="hidden" ng-model="task.createdBy" ng-init="task.createdBy = getCurrentUser()" readonly>
+			</td>
 		</tr>
 		<tr>
 			<td><textarea rows="4" cols="50" ng-model="task.entry" placeholder="entry"></textarea></td>

@@ -1,9 +1,13 @@
 <div class="content">
 	<div class="items">
-		<h2>Zadatak {{task._id}}</h2>
-		<div>{{task.title}}</div>
-		<div>{{task.createdAt | date:'dd.MM.yyyy. HH:mm:ss'}}</div>
-		<div>{{task.entry}}</div>
+		<h2>Task mark: {{task.mark}}</h2>
+		<div>Title: {{task.title}}</div>
+		<div>Priority: {{task.priority.name}}</div>
+		<div>Status: {{task.status.name}}</div>
+		<div>Created By: {{task.createdBy}}</div>
+		<div>Assigned To: {{task.assignedTo}}<div>
+		<div>Creation date: {{task.createdAt | date:'dd.MM.yyyy. HH:mm:ss'}}</div>
+		<div>Description: {{task.entry}}</div>
 	</div>
 
 	</br>

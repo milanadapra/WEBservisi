@@ -14,7 +14,7 @@ var taskSchema = new Schema({
   },
   mark: {
     type: String,
-    required: true
+    required: false
   },
   createdAt: Date,
   // napomena! komentari su u ovom primeru implementirani kao reference zbog ilustracije rada sa referencama

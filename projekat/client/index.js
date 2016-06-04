@@ -42,7 +42,7 @@
         controller: 'userCtrl'
        });
    }
-   function run($rootScope, $http, $location, $localStorage, AuthenticationService, $state) {
+   function run($rootScope, $window, $http, $location, $localStorage, AuthenticationService, $state) {
         //postavljanje tokena nakon refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = $localStorage.currentUser.token;
@@ -50,9 +50,9 @@
 
         // ukoliko pokušamo da odemo na stranicu za koju nemamo prava, redirektujemo se na login
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          var publicStates = ['login','main', 'register'/*'entry',*/];
+          var publicStates = ['login','main', 'register'];
           var restrictedState = publicStates.indexOf(toState.name) === -1;
-          if(restrictedState && !AuthenticationService.getCurrentUser()){
+          if(restrictedState && !AuthenticationService.getCurrentUser() && window.onbeforeunload){
             $state.go('login');
           }
         });
@@ -96,6 +96,8 @@
         $rootScope.getCurrentState = function () {
           return $state.current.name;
         }
+
+        $window.onbeforeunload = $rootScope.logout();
     }
 
 }(angular));

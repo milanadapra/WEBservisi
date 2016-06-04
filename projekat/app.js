@@ -281,21 +281,29 @@ commentRouter
     });
   });
 })
-.put('/:id', passport.authenticate('jwt', { session: false}),  function(req, res, next) {
-  console.log("usao!");
+.post('/task/:commentId', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+  var token = getToken(req.headers);
+  if (token) {
+    var decoded = jwt.decode(token, config.secret);
+    if(!decoded.role||decoded.role!=='admin'){
+      return res.status(403).send({success: false, msg: 'Not allowed.'});    
+    }
     Comment.findOne({
-      "_id": req.params.id
-    }, function(err, comment) {
+      "_id": req.params.commentId
+    }, function(err, commen) {
       if (err) next(err);
       var newEntry = req.body;
-      comment.text = newEntry.text;
-      comment.signedBy = newEntry.signedBy;
-      comment.save(function(err, comment) {
+      commen.text = newEntry.text;
+      commen.save(function(err, comm) {
         if (err) next(err);
-        res.json(comment);
+        res.json(comm);
       });
     });
-  })
+  }
+  else{
+    return res.status(403).send({success: false, msg: 'Not allowed.'});    
+  }
+})
 .delete('/task/:taskId/:commentId', function (req, res, next) {
 var comment = Comment.findOne({'_id':req.params.commentId}, function (err, comment) {
 Task.findOne({"_id":req.params.taskId},function (err, entry) {

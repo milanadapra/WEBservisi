@@ -7,10 +7,12 @@
 		$scope.comments = Task.comments;
 		};
 		loadComments();
+		
 		var reloadRoute = function() {
   			 $state.reload();
 		}
 
+		
 		$scope.save = function (task) {
 			//pri pozivu custom post metode (save) prosledjuje se parametar blogEntryId
 			if (!$scope.comment._id){
@@ -21,12 +23,12 @@
 			});	
 			}
 			else {
-				console.log("dosaoo");
-				$scope.comment.$update();	
-				console.log("prosao update");
-				reloadRoute();	
+				console.log($scope.comment._id);
+				$scope.comment.$update($scope.comment) 
+				loadComments();
+				task.$get();
+				reloadRoute();
 			}
-
 		} 
 		$scope.delete = function(task, comm){
 
@@ -39,6 +41,7 @@
 		}	
 
 		$scope.edit = function(comm) {
+			console.log(comm);
 			$scope.comment = comm;
 		}	
 		

@@ -4,7 +4,6 @@
 
 		var loadUser = function(){
 		$scope.user  = User.query();
-		$scope.users = Project.users;
 		$scope.us = new User();
 		}
 		loadUser();

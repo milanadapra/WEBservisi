@@ -5,13 +5,16 @@
 		<div>Priority: <span class="footerContent">{{task.priority.name}}</span></div>
 		<div>Status: <span class="footerContent">{{task.status.name}}</span></div>
 		<div>Created By: <span class="footerContent">{{task.createdBy}}</span></div>
-		<div>Assigned To: <span class="footerContent">{{task.assignedTo}}</span><div>
+		<div ng-controller="userCtrl">
+			<div ng-repeat="u in user">
+				<div ng-if="u._id == task.assignedTo">
+					<div>Assigned To: <span class="footerContent">{{u.name}}</span></div>
+				</div>
+			</div>
+		</div>
 		<div>Creation date: <span class="footerContent">{{task.createdAt | date:'dd.MM.yyyy. HH:mm:ss'}}</span></div>
 		<div>Description: <span class="footerContent"> {{task.entry}}</span></div>
-	</div>
-
-	</br>
-	</br>
+	
 	<div ng-controller="commentCtrl">
 	<div ng-include="'comments/commentForm.html'" style="padding-left: 20px;">
 	</div>
@@ -25,4 +28,5 @@
 		</div>
 	</div>
 	</div>
+</div>
 </div>

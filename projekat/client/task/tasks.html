@@ -2,7 +2,7 @@
 <div ng-controller="tasksCtrl" class="items">
 	<h1>Tasks</h1>
 	</br>
-	<div ng-repeat="task in project.tasks" class="item">
+	<div ng-repeat="task in project.tasks | orderBy:'priority.id'" class="item">
 		<table width="400">
 			<tr>
 				<td colspan="2">
@@ -39,7 +39,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td><input class="form-control input-sm chat-input" type="text" ng-model="task.title" placeholder="title"></td>
+			<td><input class="form-control input-sm chat-input" type="text" ng-model="task.title" placeholder="title">
+			<input type="hidden" ng-model="task.createdBy" ng-init="task.createdBy = getCurrentUser()" readonly></td>
 		</tr>
 		<tr><td>
 			<ui-select ng-model="task.priority">
@@ -65,15 +66,24 @@
 		</td>
 		</tr>
 		<tr>
-			<td><ui-select ng-model="task.assignedTo">
+			<td><ui-select ng-model="task.assignedTo" ng-controller="userCtrl">
     			<ui-select-match>
-       			 	<span ng-bind="$select.selected"></span>
+    				<div ng-repeat="us in user">
+    					<div ng-repeat="idu in project.users">
+	       					<div ng-if="(us._id == idu)&&(us._id == $select.selected._id)">
+	       			 			<span ng-bind="$select.selected.name"></span>
+	       			 		</div>
+       			 		</div>
+       			 	</div>
     			</ui-select-match>
-   			 		<ui-select-choices repeat="item in (project.users | filter: $select.search)">
-       					 <span ng-bind="item"></span>
+   			 		<ui-select-choices  repeat="item in (user | filter: $select.search)">
+       						<div ng-repeat="id in project.users">
+       							<div ng-if="item._id == id">
+       					 			<span ng-bind="item.name"></span>
+       					 		</div>
+       					 	</div>
     				</ui-select-choices>
 			</ui-select>
-				<input type="hidden" ng-model="task.createdBy" ng-init="task.createdBy = getCurrentUser()" readonly>
 			</td>
 		</tr>
 		<tr>

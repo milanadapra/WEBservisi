@@ -42,8 +42,7 @@
 
         function register(username, password) {
             $http.post('/api/users/register', {name: username, password: password})
-            .success(function(response){
-              
+            .success(function(response){              
                 $state.go('login');
             });
         }
@@ -58,5 +57,6 @@
         function getCurrentUser() {
             return $localStorage.currentUser;
         }
+
     }
 })();

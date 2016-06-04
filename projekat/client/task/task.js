@@ -1,6 +1,6 @@
 (function (angular) {
 	angular.module('task',['task.resource', 'project.resource'])
-	.controller('tasksCtrl', function($scope,Project, Task, $location, $state) {
+	.controller('tasksCtrl', function($scope, Project, Task, $location, $state) {
 		var loadTasks = function () {
 			$scope.tasks = Project.tasks;		
 			$scope.task = new Task();
@@ -42,7 +42,7 @@
 				$scope.task.$update(function(){
 				loadTasks();
 				project.$get();
-				reloadRoute();
+				//reloadRoute();
 				});				
 			}
 		} 
@@ -59,9 +59,7 @@
 		}
 	    $scope.details = function (task) {
 	      $location.path('/tasks/'+task._id);
-	    }
-
-	   
+	    }	   
 
 	})
 	.controller('taskCtrl', function($scope, $stateParams, Task){

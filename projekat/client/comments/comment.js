@@ -6,6 +6,7 @@
 		$scope.comment = new Comment();
 		$scope.comments = Task.comments;
 		};
+		
 		loadComments();
 		
 		var reloadRoute = function() {

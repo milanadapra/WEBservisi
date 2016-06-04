@@ -11,7 +11,7 @@
 				},
 				delete:{
 					method:'DELETE',
-					url:'/api/tasks/project/:projectId/:taskId'
+					url: '/api/tasks/project/:projectId/:taskId'
 				}
 			});
 		return Task;

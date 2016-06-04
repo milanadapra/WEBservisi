@@ -16,6 +16,9 @@ var projectSchema = new Schema({
     mark:{
       type:String
     },
+    counter:{
+      type:Number
+    },
     users: [{ type:Schema.Types.ObjectId, ref: 'User'}],
     tasks: [{ type:Schema.Types.ObjectId, ref : 'Task'}]
 });

@@ -1,6 +1,6 @@
 (function (angular) {
 	angular.module('task',['task.resource', 'project.resource'])
-	.controller('tasksCtrl', function($scope,Project, Task,$location) {
+	.controller('tasksCtrl', function($scope,Project, Task, $location, $state) {
 		var loadTasks = function () {
 			$scope.tasks = Project.tasks;		
 			$scope.task = new Task();
@@ -24,21 +24,25 @@
 
     		$scope.task.status = { id: 1, name:'To Do' };
 
-    		$scope.task.mark = Task.mark;
-
 		}
 		loadTasks();
+
+		var reloadRoute = function() {
+  			 $state.reload();
+		}
 		$scope.save = function(project) {
 			if(!$scope.task._id){
 				$scope.task.$save({'projectId':project._id},function () {
 				loadTasks();
 				project.$get();
+				reloadRoute();
 			});
 			}
 			else{
 				$scope.task.$update(function(){
 				loadTasks();
 				project.$get();
+				reloadRoute();
 				});				
 			}
 		} 
@@ -47,6 +51,7 @@
 				$scope.task.$delete(ta);
 				loadTasks();
 				project.$get();
+				reloadRoute();
 			});
 		}
 		$scope.edit = function (task) {

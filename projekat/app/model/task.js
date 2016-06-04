@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -12,6 +13,9 @@ var taskSchema = new Schema({
     type: String,
     required: true
   },
+  mark:{
+      type:String
+    },
   createdBy:{
     type: String
   },

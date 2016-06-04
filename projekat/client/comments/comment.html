@@ -1,28 +1,21 @@
 <div class="comment">
-	<div ng-if="getCurrentUserRole()=='admin'">
+	
 	<b>{{comment.signedBy}}</b>
 	</br>
 	<p>{{comment.text}}</p>
 	<p>
+	<div ng-if="getCurrentUserRole()=='admin'">
 	<button ng-click="delete(task,comment)"><img src="images/delete.jpg" width="30"></button>
 	<button ng-click="edit(comment)"><img src="images/edit.png" width="30"></button>
-	</p>
 	</div>
+	</p>
 	<div ng-if="getCurrentUserRole()=='user'">
-	<b>{{comment.signedBy}}</b>
-	</br>
-	<p>{{comment.text}}</p>
-	<p>
+	
 	<div ng-if="comment.signedBy == getCurrentUser()">
 	<button ng-click="delete(task,comment)"><img src="images/delete.jpg" width="30"></button>
 	<button ng-click="edit(comment)"><img src="images/edit.png" width="30"></button>
 	</div>
 	</p>
-	</div>
-	<div class="comment" ng-if="comment.comments">
-		<div ng-repeat="comment in comment.comments"
-			ng-include="'comments/comment.html'">
-		</div>
 	</div>
 	</br>
 	Posted on {{comment.createdAt.replace('T',' ').replace('Z','')}}

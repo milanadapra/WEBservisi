@@ -194,8 +194,10 @@ Project.findOne({"_id":req.params.id},function (err, entry) {
   task.save(function(err, task) {
     if (err) next(err);
           Project.findByIdAndUpdate(entry._id, {$push:{"tasks":task._id}}, function (err, entry) {
+        Project.findByIdAndUpdate(entry._id, {$set:{"counter":entry.counter + 1}}, function (err, entry) {
         if(err) next(err);
         res.json(entry);
+      });
       });
     });
   });

@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" >
 <div ng-controller="tasksCtrl" class="items">
 	<h1>Tasks</h1>
 	</br>
@@ -35,11 +35,11 @@
 	<h2>New task</h2>
 	<table>  
 		<tr>
-			<td><input type="text" ng-model="task.mark" ng-init="task.mark = project.mark + '-' + (project.tasks.length +1)" readonly> 
+			<td><input class="form-control input-sm chat-input" type="text" ng-model="task.mark" ng-init="task.mark = project.mark + '-' + project.counter" readonly> 
 			</td>
 		</tr>
 		<tr>
-			<td><input type="text" ng-model="task.title" placeholder="title"></td>
+			<td><input class="form-control input-sm chat-input" type="text" ng-model="task.title" placeholder="title"></td>
 		</tr>
 		<tr><td>
 			<ui-select ng-model="task.priority">
@@ -77,10 +77,10 @@
 			</td>
 		</tr>
 		<tr>
-			<td><textarea rows="4" cols="50" ng-model="task.entry" placeholder="entry"></textarea></td>
+			<td><textarea  class="form-control input-sm chat-input" rows="4" cols="50" ng-model="task.entry" placeholder="entry"></textarea></td>
 		</tr>
 		<tr>
-			<td align="right"><button ng-click="save(project)" class="btn btn-primary">submit</button></td>
+			<td align="right"><br/><button ng-click="save(project)" class="btn btn-primary">submit</button></td>
 		</tr>
 	</table>
 	</div>

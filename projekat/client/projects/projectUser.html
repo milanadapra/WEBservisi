@@ -7,9 +7,9 @@
 		<tr>
 			<td class="col-md-2">Username: </td>
 			<td class="col-md-2">{{u.name}}</td>
-			<td class="col-md-2">
-			<button  ng-if="project.users.indexOf(u._id)===-1" type="button" ng-init="show=(project.users.indexOf(u._id)===-1)" class="btn btn-default" ng-click="save2(project, u); reloadRoute()" ng-hide="!show">Add</button>
-			<button  ng-if="project.users.indexOf(u._id)!==-1" ng-init="show=(project.users.indexOf(u._id)===-1)" ng-hide="show" type="button" class="btn btn-default" ng-click="remUser(project, u);  reloadRoute()">Remove</button>
+			<td class="col-md-2" align="right">
+			<button  ng-if="project.users.indexOf(u._id)===-1" type="button" ng-init="show=(project.users.indexOf(u._id)===-1)" class="btn btn-default" ng-click="save2(project, u); reloadRoute()" ng-hide="!show"><img src="images/addPeople1.png" width="30"> </button>
+			<button  ng-if="project.users.indexOf(u._id)!==-1" ng-init="show=(project.users.indexOf(u._id)===-1)" ng-hide="show" type="button" class="btn btn-default" ng-click="remUser(project, u);  reloadRoute()"><img src="images/removePeople.png" width="30"> </button>
 			</td>
 		</tr>
 	</table>

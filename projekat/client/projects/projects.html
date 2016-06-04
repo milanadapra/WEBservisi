@@ -1,31 +1,38 @@
 <div class="content">
 <div ng-controller="projectsCtrl">
 	<h1>Projects</h1>
-	<div ng-repeat="project in projects">
+	
 		<div ng-if="getCurrentUserRole() == 'admin'">
-			{{ project.title }}			
-		</div>
-			<div ng-if="project.users.indexOf(getCurrentUserId())!==-1">
-				{{ project.title }}
-				<button ng-click="details(project)"> Add tasks </button>
+		<div ng-repeat="project in projects" class="item">
+			<h3>{{ project.title }}		</h3>
+			<div style="position:relative; bottom:5px; left: 70%;">
+				<button ng-click="details(project)"> <img src="images/addTask.png" width="30"> </button>
+				<button ng-click="addUsers(project)"><img src="images/addPeople.png" width="30">  </button>
 			</div>
-		<div  ng-if="getCurrentUserRole()=='admin'">
-			<button ng-click="details(project)"> Add tasks </button>
-			<button ng-click="addUsers(project)"> Add users </button>
+			</div>	
 		</div>
+		<div ng-if="getCurrentUserRole() == 'user'">
+			<div ng-repeat="project in projects" >
+			<div ng-if="project.users.indexOf(getCurrentUserId())!==-1" class="item">
+				<h3>{{ project.title }}</h3>
+				<div style="position:relative; bottom:5px; left: 80%;">
+					<button ng-click="details(project)"><img src="images/addTask.png" width="30"> </button>
+				</div>
+				</div>
+			</div>
+			</div>
+		
 	</div>
-	<div  ng-if="getCurrentUserRole()=='admin'">
-	<hr/>
+	<div  ng-if="getCurrentUserRole()=='admin'" class="newItem">
 	<h2>New project</h2>
-	<table>
+	<table width="300">
 		<tr>
-			<td>title:</td>
-			<td><input type="text" ng-model="project.title"></td>
+			<td><input class="form-control input-sm chat-input" type="text" ng-model="project.title" placeholder="Title"></td>
 		</tr>
 		<tr>
-			<td colspan="2" aling="center"><button ng-click="save()">submit</button></td>
+			<td align="right"> <br/><button class="btn btn-primary" ng-click="save()">submit</button></td>
 		</tr>
 	</table>
 	</div>
-</div>
+
 </div>

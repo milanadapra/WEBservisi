@@ -3,13 +3,13 @@
 		<table>
 			<tr>
 				<td>
-					<input type="text" ng-model="comment.signedBy" ng-init="comment.signedBy=getCurrentUser()"  readonly>
+					<input type="text" ng-model="comment.signedBy" ng-init="comment.signedBy=getCurrentUser()"  readonly class="form-control input-sm chat-input">
 				
 				</td> 
 			</tr>
 
 			<tr>
-				<td><textarea rows="4" cols="50" ng-model="comment.text" placeholder="Add comment here."></textarea></td>
+				<td><textarea rows="4" cols="50" ng-model="comment.text" placeholder="Add comment here." class="form-control input-sm chat-input"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right"><button ng-click="save(task)" class="btn btn-primary">Comment</button></td>

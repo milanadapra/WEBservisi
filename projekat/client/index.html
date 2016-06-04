@@ -61,21 +61,13 @@
 	<div class="col-sm-2" ng-if="isLoggedIn()">
             <nav class="nav-sidebar">
 				<ul class="nav">
-                    <li><a>Projects</a></li>
-                    <li><a >Tasks</a></li>
-                    <li><a>People</a></li>
+                    <li><a ui-sref="main">Home</a></li>
                     <li class="nav-divider"></li>
-                    <li><img src="images/out.png" width="30"> <button class="btn btn-primary" ng-click="logout()">log out</button> </li>
+                    <li><a><img src="images/out.png" width="30"> <button class="btn btn-primary" ng-click="logout()">log out</button></a> </li>
                 </ul>
 			</nav>
 	</div>
 	
-		<!--<div class="form-login" ng-if="!isLoggedIn()&&getCurrentState()!=='login'" >
-			<div class="wrapper">
-				<a ui-sref="login"><button class="btn btn-primary">Confirm you are 18+</button></a>
-			</div>
-		</div>
-	-->
 		<div ui-view>
 		</div>
 	

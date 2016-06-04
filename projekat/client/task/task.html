@@ -1,13 +1,13 @@
 <div class="content">
 	<div class="items">
 		<h2>Task mark: {{task.mark}}</h2>
-		<div>Title: {{task.title}}</div>
-		<div>Priority: {{task.priority.name}}</div>
-		<div>Status: {{task.status.name}}</div>
-		<div>Created By: {{task.createdBy}}</div>
-		<div>Assigned To: {{task.assignedTo}}<div>
-		<div>Creation date: {{task.createdAt | date:'dd.MM.yyyy. HH:mm:ss'}}</div>
-		<div>Description: {{task.entry}}</div>
+		<h3>Title: {{task.title}}</h3>
+		<div>Priority: <span class="footerContent">{{task.priority.name}}</span></div>
+		<div>Status: <span class="footerContent">{{task.status.name}}</span></div>
+		<div>Created By: <span class="footerContent">{{task.createdBy}}</span></div>
+		<div>Assigned To: <span class="footerContent">{{task.assignedTo}}</span><div>
+		<div>Creation date: <span class="footerContent">{{task.createdAt | date:'dd.MM.yyyy. HH:mm:ss'}}</span></div>
+		<div>Description: <span class="footerContent"> {{task.entry}}</span></div>
 	</div>
 
 	</br>

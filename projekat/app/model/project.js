@@ -17,6 +17,7 @@ var projectSchema = new Schema({
       type:String
     },
     counter:{
+      default: 1,
       type:Number
     },
     users: [{ type:Schema.Types.ObjectId, ref: 'User'}],

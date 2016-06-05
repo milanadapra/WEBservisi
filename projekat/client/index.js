@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['ui.select','task','comment','login', 'register','ui.router', 'authentication','project','user']);
+	var app = angular.module('app',['ui.select','chart.js','task','comment','login', 'register','ui.router', 'authentication','project','user']);
 	app
     .config(config)
     .run(run);
@@ -52,7 +52,7 @@
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
           var publicStates = ['login','main', 'register'];
           var restrictedState = publicStates.indexOf(toState.name) === -1;
-          if(restrictedState && !AuthenticationService.getCurrentUser() && window.onbeforeunload){
+          if(restrictedState && !AuthenticationService.getCurrentUser()){
             $state.go('login');
           }
         });
@@ -97,7 +97,7 @@
           return $state.current.name;
         }
 
-        $window.onbeforeunload = $rootScope.logout();
+        //$window.onbeforeunload = $rootScope.logout();
     }
 
 }(angular));

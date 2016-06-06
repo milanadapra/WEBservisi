@@ -24,11 +24,11 @@
 			});	
 			}
 			else {
-				console.log($scope.comment._id);
-				$scope.comment.$update($scope.comment) 
+				$scope.comment.$update(function(){
 				loadComments();
 				task.$get();
 				reloadRoute();
+				});				
 			}
 		} 
 		$scope.delete = function(task, comm){
@@ -42,8 +42,7 @@
 		}	
 
 		$scope.edit = function(comm) {
-			console.log(comm);
-			$scope.comment = comm;
+			$scope.comment = new Comment(comm);
 		}	
 		
 	});

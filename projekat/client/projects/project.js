@@ -24,7 +24,8 @@
 	.controller('projectCtrl', function($scope, $stateParams, Project){
 		var projectId = $stateParams.id;
 		$scope.project = Project.get({_id:projectId});
-		$scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+
+		$scope.labels = [$scope.project.users];
   		$scope.data = [300, 500, 100];
 
 	});

@@ -203,12 +203,6 @@ Project.findOne({"_id":req.params.id},function (err, entry) {
   });
 })
 .put('/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
-  var token = getToken(req.headers);
-  if (token) {
-    var decoded = jwt.decode(token, config.secret);
-    if(!decoded.role||decoded.role!=='admin'){
-      return res.status(403).send({success: false, msg: 'Not allowed.'});    
-    }
     Task.findOne({
       "_id": req.params.id
     }, function(err, task) {
@@ -220,16 +214,11 @@ Project.findOne({"_id":req.params.id},function (err, entry) {
       task.assignedTo = newEntry.assignedTo;
       task.priority = newEntry.priority;
       task.status = newEntry.status;
-      task.title = newEntry.title;
       task.save(function(err, task) {
         if (err) next(err);
         res.json(task);
       });
     });
-  }
-  else{
-    return res.status(403).send({success: false, msg: 'Not allowed.'});    
-  }
 })
 .delete('/:id', function(req, res, next) {
   Task.remove({
@@ -281,15 +270,9 @@ commentRouter
     });
   });
 })
-.post('/task/:commentId', passport.authenticate('jwt', { session: false}), function(req, res, next) {
-  var token = getToken(req.headers);
-  if (token) {
-    var decoded = jwt.decode(token, config.secret);
-    if(!decoded.role||decoded.role!=='admin'){
-      return res.status(403).send({success: false, msg: 'Not allowed.'});    
-    }
+.put('/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
     Comment.findOne({
-      "_id": req.params.commentId
+      "_id": req.params.id
     }, function(err, commen) {
       if (err) next(err);
       var newEntry = req.body;
@@ -299,10 +282,6 @@ commentRouter
         res.json(comm);
       });
     });
-  }
-  else{
-    return res.status(403).send({success: false, msg: 'Not allowed.'});    
-  }
 })
 .delete('/task/:taskId/:commentId', function (req, res, next) {
 var comment = Comment.findOne({'_id':req.params.commentId}, function (err, comment) {

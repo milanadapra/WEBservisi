@@ -42,7 +42,7 @@
 				$scope.task.$update(function(){
 				loadTasks();
 				project.$get();
-				//reloadRoute();
+				reloadRoute();
 				});				
 			}
 		} 
@@ -55,7 +55,7 @@
 			});
 		}
 		$scope.edit = function (task) {
-			$scope.task = task;
+			$scope.task = new Task(task);
 		}
 	    $scope.details = function (task) {
 	      $location.path('/tasks/'+task._id);

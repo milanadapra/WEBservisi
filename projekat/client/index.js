@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['ui.select','chart.js','task','comment','login', 'register','ui.router', 'authentication','project','user']);
+	var app = angular.module('app',['ui.select','chart.js','task','comment','login', 'register','ui.router', 'authentication','project','user','reports']);
 	app
     .config(config)
     .run(run);
@@ -40,6 +40,11 @@
         url : '/projects/users/:id',
         templateUrl: 'projects/projectUser.html',
         controller: 'userCtrl'
+       })
+      .state('reports',{
+        url : '/reports',
+        templateUrl: 'reports/reports.html',
+        controller: 'reportsCtrl'
        });
    }
    function run($rootScope, $window, $http, $location, $localStorage, AuthenticationService, $state) {

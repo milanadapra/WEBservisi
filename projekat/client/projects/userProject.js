@@ -10,14 +10,20 @@
 
 		$scope.save2 = function(project, u) {
 			$scope.us.$update({'projectId':project._id, 'userId':u._id},function () {
-			});
+			
 			$scope.disabled();
+			loadUser();
+			reloadRoute();
+			});
 		}
 
 		$scope.remUser = function(project, u) {
 			$scope.us.$removeUser({'projectId':project._id, 'userId':u._id},function () {
+			
+			$scope.disabled();	
+			loadUser();
+			reloadRoute();
 			});
-			$scope.disabled();
 		}
 
 		$scope.show = true;
@@ -29,7 +35,6 @@
   		$scope.reloadRoute = function() {
   			 $state.reload();
 		}
-  		
 
 	});
 }(angular));

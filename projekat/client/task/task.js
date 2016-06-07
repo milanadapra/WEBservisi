@@ -4,6 +4,7 @@
 		var loadTasks = function () {
 			$scope.tasks = Project.tasks;		
 			$scope.task = new Task();
+			$scope.taskses = Task.query();
 
 			 $scope.priority = [
         		 {id: 1, name: 'Blocker'},

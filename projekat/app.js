@@ -208,6 +208,7 @@ Project.findOne({"_id":req.params.id},function (err, entry) {
     }, function(err, task) {
       if (err) next(err);
       var newEntry = req.body;
+      task.history.push(new Task(task));
       task.title = newEntry.title;
       task.entry = newEntry.entry;
       task.createdBy = newEntry.createdBy;

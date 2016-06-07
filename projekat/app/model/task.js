@@ -40,7 +40,8 @@ var taskSchema = new Schema({
   createdAt: Date,
   // napomena! komentari su u ovom primeru implementirani kao reference zbog ilustracije rada sa referencama
   // u realnom sluacju bolje bi bilo implementirati ih kao poddokumente
-  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+  history:[this]
 });
 
 // prilikom snimanja se postavi datum

@@ -2,7 +2,8 @@
 <div ng-controller="projectCtrl">
 	<h1>Users on project: {{project.title}}</h1>
 	</br>
-	<div ng-repeat="u in user" class="item" ng-if="u.role=='user'" ng-controller="userCtrl" >
+	<div ng-controller="userCtrl">
+	<div ng-repeat="u in user" class="item" ng-if="u.role=='user'" >
 		<table >
 		<tr>
 			<td class="col-md-2">Username: </td>
@@ -15,10 +16,7 @@
 	</table>
 	<br/>
 	</div>
+</div>
 
-
-<canvas id="pie" class="chart chart-pie"
-  chart-data="data" chart-labels="labels">
-</canvas>
 </div>
 </div>

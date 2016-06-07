@@ -1,5 +1,5 @@
 <div class="content">
-	<div class="items">
+	<div class="items" style="float:left; width:50%;">
 		<h2>Task mark: {{task.mark}}</h2>
 		<h3>Title: {{task.title}}</h3>
 		<div>Priority: <span class="footerContent">{{task.priority.name}}</span></div>
@@ -28,5 +28,33 @@
 		</div>
 	</div>
 	</div>
+</div>
+<div style="float:left; width:50%;">
+<h3>History:</h3>
+<div ng-repeat="hTask in task.history" class="item">
+		<table width="360">
+			<tr>
+				<td>
+					<h4>Version nubmer: {{task.history.indexOf(hTask) +1}}</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Title: {{hTask.title}}
+				</td>
+			</tr>
+			<tr>
+				<td >
+					Priority: {{hTask.priority.name}}</td>
+			</tr>
+			<tr>
+				<td >
+					Status: {{hTask.status.name}}</td>
+			</tr>
+			<tr>
+				<td >
+					Description: {{hTask.entry}}</td>
+			</tr>
+		</table>
 </div>
 </div>

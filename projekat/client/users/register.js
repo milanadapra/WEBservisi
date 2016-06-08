@@ -4,8 +4,6 @@
 		$scope.user={};
 
 		$scope.register=function () {
-			console.log($scope.user.name);
-			console.log($scope.user.password);
 			AuthenticationService.register($scope.user.name,$scope.user.password);
 			console.log($scope.user.name);
 			console.log($scope.user.password);

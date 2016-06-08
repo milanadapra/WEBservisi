@@ -32,7 +32,7 @@
     		$scope.sSave=!$scope.show;
   		}
 
-  		$scope.reloadRoute = function() {
+  		var reloadRoute = function() {
   			 $state.reload();
 		}
 

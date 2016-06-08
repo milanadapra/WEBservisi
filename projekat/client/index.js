@@ -42,9 +42,9 @@
         controller: 'userCtrl'
        })
       .state('reports',{
-        url : '/reports',
+        url : '/project/reports/:id',
         templateUrl: 'reports/reports.html',
-        controller: 'reportsCtrl'
+        controller: 'projectCtrl'
        });
    }
    function run($rootScope, $window, $http, $location, $localStorage, AuthenticationService, $state) {

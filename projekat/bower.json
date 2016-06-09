@@ -8,7 +8,9 @@
     "angular-ui-router": "^0.2.18",
     "ngstorage": "^0.3.10",
     "angular-jwt": "^0.0.9",
-    "angular-chart.js": "^0.10.2"
+    "angular-chart.js": "^0.10.2",
+    "angular-underscore-module": "^1.0.3",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "appPath": "client"

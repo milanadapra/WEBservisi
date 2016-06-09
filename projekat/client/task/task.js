@@ -1,6 +1,6 @@
 (function (angular) {
-	angular.module('task',['task.resource', 'project.resource'])
-	.controller('tasksCtrl', function($scope, Project, Task, $location, $state) {
+	angular.module('task',['task.resource', 'project.resource', 'App.filters','underscore'])
+	.controller('tasksCtrl', function($scope, Project, Task, $location, $state, _) {
 		var loadTasks = function () {
 			$scope.tasks = Project.tasks;		
 			$scope.task = new Task();
@@ -64,13 +64,54 @@
 		}
 	    $scope.details = function (task) {
 	      $location.path('/tasks/'+task._id);
-	    }	   
+	    }	 
+		
+		$scope.selectedStatus = [];
+		
+		$scope.setSelectedStatus = function () {
+			var id = this.s.id;
+			if (_.contains($scope.selectedStatus, id)) {
+				$scope.selectedStatus = _.without($scope.selectedStatus, id);
+			} else {
+				$scope.selectedStatus.push(id);
+			}
+			return false;
+		};
+
+		$scope.isChecked = function (id) {
+			if (_.contains($scope.selectedStatus, id)) {
+				return 'icon-ok pull-right';
+			}
+			return false;
+		};
+
+		$scope.checkAll = function () {
+			$scope.selectedStatus = _.pluck($scope.status, 'id');
+		};  
 
 	})
 	.controller('taskCtrl', function($scope, $stateParams, Task){
 		var taskId = $stateParams.id;
 		$scope.task = Task.get({_id:taskId});
 	});
+	
+	angular.module('App.filters', []).filter('statusFilter', [function () {
+    return function (tasks, selectedStatus) {
+        if (!angular.isUndefined(tasks) && !angular.isUndefined(selectedStatus) && selectedStatus.length > 0) {
+            var tempTasks = [];
+            angular.forEach(selectedStatus, function (id) {
+                angular.forEach(tasks, function (task) {
+                    if (angular.equals(task.status.id, id)) {
+                        tempTasks.push(task);
+                    }
+                });
+            });
+            return tempTasks;
+        } else {
+            return tasks;
+        }
+    };
+}]);
 }(angular));
 
 

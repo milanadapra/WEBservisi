@@ -24,9 +24,9 @@
 			</tr>
 		</table>
 		<div style="position:relative; bottom:5px; left: 60%;">
-			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="delete(task,project)"><img src="images/delete.jpg" width="30"></button>
-			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="edit(task)"><img src="images/edit.png" width="30"></button>
-			<button ng-click="details(task)"><img src="images/details.png" width="30"></button>
+			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="delete(task,project)" title="Delete task"><img src="images/delete.jpg" width="30"></button>
+			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="edit(task)" title="Edit task"><img src="images/edit.png" width="30"></button>
+			<button ng-click="details(task)" title="Details"><img src="images/details.png" width="30"></button>
 		</div>
 	</div>
 

@@ -101,8 +101,6 @@
         $rootScope.getCurrentState = function () {
           return $state.current.name;
         }
-
-        //$window.onbeforeunload = $rootScope.logout();
     }
 
 }(angular));

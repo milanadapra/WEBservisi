@@ -4,6 +4,7 @@
 		$scope.data = [];
 		$scope.labels = [];
 
+
 		$scope.fun = function(project, user){
 
 			if(project.users && user){
@@ -112,15 +113,49 @@
 				project.tasks.forEach(function(t){
 					ta = ta + 1;
 					if(t.status.name==="Done") {
-					userr.push($filter('date')(t.createdAt, "dd/MM/yyyy HH:mm:ss"));					
-				
-			}
-			taskk.push(ta);
+					userr.push($filter('date')(t.createdAt, "dd/MM/yyyy HH:mm:ss"));
+					taskk.push(ta);					
+					}
 				});
 			
-			
+			console.log($filter('orderBy')(userr, -Date ));
+			console.log([taskk]);
 			$scope.labels3 = $filter('orderBy')(userr, -Date );
 			$scope.data3 = [taskk];
+			}
+		}
+
+		$scope.labels4 = [];
+		$scope.data4 = [];
+		$scope.series = [];
+
+		$scope.fun4 = function(project, user){
+
+			if(project.users && user){
+				var userr = [];
+				var taskk = [];
+
+					var timeline = [];
+					user.forEach(function(us){
+							var ta = 0;
+							var noviNiz = [];
+							project.tasks.forEach(function(t){
+								if(t.assignedTo === us._id && t.status.name==="Done"){
+									ta = ta + 1;
+								
+									timeline.push($filter('date')(t.createdAt, "dd/MM/yyyy HH:mm:ss"));
+									if(userr.indexOf(us.name)==-1)
+										userr.push(us.name);
+								}
+							noviNiz.push(ta);
+							});
+							if(ta!==0){
+								taskk.push(noviNiz);
+							}
+					});
+			$scope.series = userr;
+			$scope.labels4 = $filter('orderBy')(timeline, -Date );
+			$scope.data4 = taskk;
 			}
 		}
 

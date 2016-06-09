@@ -2,28 +2,34 @@
 <div ng-controller="userCtrl">
 	<div ng-controller="reportsCtrl">
 	<h3>The percentage of tasks assigned to users on project: {{project.title}}</h3>
-		<button ng-click="fun(project, user)"><img src="images/addTask.png" width="30"> </button>
+		<button ng-click="fun(project, user)" title="Show chart"><img src="images/doughnut.png" width="30"> </button>
 		<canvas id="doughnut" class="chart chart-doughnut"
 		  chart-data="data" chart-labels="labels">
 		</canvas>
 
 
 		<h3>The percentage of finished tasks assigned to users on project: {{project.title}}</h3>
-		<button ng-click="fun1(project, user)"><img src="images/addTask.png" width="30"> </button>
+		<button ng-click="fun1(project, user)" title="Show chart"><img src="images/bar.png" width="30"> </button>
 		<canvas id="bar" class="chart chart-bar"
 		  chart-data="data1" chart-labels="labels1">
 		</canvas>
 
 		<h3>Number of created tasks on timeline on project: {{project.title}}</h3>
-		<button ng-click="fun2(project)"><img src="images/addTask.png" width="30"> </button>
+		<button ng-click="fun2(project)" title="Show chart"><img src="images/line.png" width="30"> </button>
 		<canvas id="line" class="chart chart-line"
 		  chart-data="data2" chart-labels="labels2">
 		</canvas>
 
 		<h3>Number of finished tasks on timeline on project: {{project.title}}</h3>
-		<button ng-click="fun3(project)"><img src="images/addTask.png" width="30"> </button>
+		<button ng-click="fun3(project)" title="Show chart"><img src="images/line.png" width="30"> </button>
 		<canvas id="line" class="chart chart-line"
 		  chart-data="data3" chart-labels="labels3">
+		</canvas>
+
+		<h3>Number of finished tasks assigned to users on timeline on project: {{project.title}}</h3>
+		<button ng-click="fun4(project, user)" title="Show chart"><img src="images/line.png" width="30"> </button>
+		<canvas id="line" class="chart chart-line"
+		  chart-data="data4" chart-labels="labels4" chart-legend="true" chart-series="series" >
 		</canvas>
 
 

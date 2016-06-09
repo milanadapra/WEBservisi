@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 // koristimo mongoose model koju smo kreirali u folderu model
 var Task = require(__dirname + '/app/model/task');
 var Comment = require(__dirname + '/app/model/comment');
-var User        = require(__dirname + '/app/model/user');
+var User = require(__dirname + '/app/model/user');
 var Project = require(__dirname + '/app/model/project');
 var passport  = require('passport');
 var config = require(__dirname+'/config/database'); // get db config file

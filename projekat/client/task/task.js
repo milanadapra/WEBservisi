@@ -26,6 +26,10 @@
     		$scope.task.status = { id: 1, name:'To Do' };
 
 		}
+
+		$scope.createMark = function(project){
+			$scope.task.mark = project.mark + '-' + project.counter;
+		}
 		loadTasks();
 
 		var reloadRoute = function() {

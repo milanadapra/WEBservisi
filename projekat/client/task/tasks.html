@@ -25,7 +25,7 @@
 		</table>
 		<div style="position:relative; bottom:5px; left: 60%;">
 			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="delete(task,project)" title="Delete task"><img src="images/delete.jpg" width="30"></button>
-			<button ng-if="getCurrentUserRole()&&getCurrentUserRole()=='admin'" ng-click="edit(task)" title="Edit task"><img src="images/edit.png" width="30"></button>
+			<button ng-click="edit(task)" title="Edit task"><img src="images/edit.png" width="30"></button>
 			<button ng-click="details(task)" title="Details"><img src="images/details.png" width="30"></button>
 		</div>
 	</div>
@@ -34,10 +34,6 @@
 	<hr/>
 	<h2>New task</h2>
 	<table>  
-		<tr>
-			<td><input class="form-control input-sm chat-input" type="text" ng-model="task.mark" ng-init="task.mark = project.mark + '-' + project.counter" readonly> 
-			</td>
-		</tr>
 		<tr>
 			<td><input class="form-control input-sm chat-input" type="text" ng-model="task.title" placeholder="title">
 			<input type="hidden" ng-model="task.createdBy" ng-init="task.createdBy = getCurrentUser()" readonly></td>
@@ -90,7 +86,7 @@
 			<td><textarea  class="form-control input-sm chat-input" rows="4" cols="50" ng-model="task.entry" placeholder="entry"></textarea></td>
 		</tr>
 		<tr>
-			<td align="right"><br/><button ng-click="save(project)" class="btn btn-primary">submit</button></td>
+			<td align="right"><br/><button ng-click="createMark(project);save(project)" class="btn btn-primary">submit</button></td>
 		</tr>
 	</table>
 	</div>

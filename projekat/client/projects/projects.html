@@ -6,7 +6,7 @@
 		<div ng-repeat="project in projects" class="item">
 			<h3>{{ project.title }}		</h3>
 			<div style="position:relative; bottom:5px; left: 60%;">
-				<button ng-click="details(project)" title="Tasks on project"> <img src="images/addTask.png" width="30"> </button>
+				<button ng-click="createMark(project);details(project)" title="Tasks on project"> <img src="images/addTask.png" width="30"> </button>
 				<button ng-click="addUsers(project)" title="Add users on project"><img src="images/addPeople.png" width="30">  </button>
 				<button ng-click="report(project)" title="Reports"><img src="images/report.png" width="30">  </button>
 			</div>

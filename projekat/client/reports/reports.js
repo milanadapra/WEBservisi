@@ -79,24 +79,40 @@
 		$scope.fun2 = function(project){
 
 			if(project.users){
+				var userr1 = ["07/06/2016 00:00:00","07/06/2016 12:00:00","08/06/2016 00:00:00","08/06/2016 12:00:00","09/06/2016 00:00:00", "09/06/2016 12:00:00", "10/06/2016 00:00:00", "10/06/2016 12:00:00", "11/06/2016 00:00:00"];
 				var userr = [];
 				var taskk = [];
 	
 				var ta = 0;
 				project.tasks.forEach(function(t){
 					ta = ta + 1;
-					if(t.history.length !== 0){
-					userr.push($filter('date')(t.history[0].createdAt, "dd/MM/yyyy HH:mm:ss"));					
-				}
-				else{
-					userr.push($filter('date')(t.createdAt, "dd/MM/yyyy HH:mm:ss"));							
-				}
-				taskk.push(ta);
+						if(t.history.length !== 0){
+							userr.push($filter('date')(t.history[0].createdAt, "dd/MM/yyyy HH:mm:ss"));				
+						}
+						else{
+							userr.push($filter('date')(t.createdAt, "dd/MM/yyyy HH:mm:ss"));					
+						}
+						taskk.push(ta);	
+				});
+
+				userr = $filter('orderBy')(userr, -Date );
+
+				
+				userr1.forEach(function(u1){
+					var keepGoing = true;
+					userr.forEach(function(u){
+						if(keepGoing) {
+							if(u1<u){
+								taskk.push(userr.indexOf(u));
+								keepGoing = false;
+							}
+						}
+					});
 				});
 			
-			
+			userr.push.apply(userr,userr1);
 			$scope.labels2 = $filter('orderBy')(userr, -Date );
-			$scope.data2 = [taskk];
+			$scope.data2 = [$filter('orderBy')(taskk, -Number )];
 			}
 		}
 
@@ -108,6 +124,8 @@
 			if(project.users){
 				var userr = [];
 				var taskk = [];
+				var userr1 = ["07/06/2016 00:00:00","07/06/2016 12:00:00","08/06/2016 00:00:00","08/06/2016 12:00:00","09/06/2016 00:00:00", "09/06/2016 12:00:00", "10/06/2016 00:00:00", "10/06/2016 12:00:00", "11/06/2016 00:00:00"];
+				
 	
 				var ta = 0;
 				project.tasks.forEach(function(t){
@@ -117,11 +135,25 @@
 					taskk.push(ta);					
 					}
 				});
+
+				userr = $filter('orderBy')(userr, -Date );
+
+				userr1.forEach(function(u1){
+					var keepGoing = true;
+					userr.forEach(function(u){
+						if(keepGoing) {
+							if(u1<u){
+								taskk.push(userr.indexOf(u));
+								keepGoing = false;
+							}
+						}
+					});
+				});
 			
-			console.log($filter('orderBy')(userr, -Date ));
-			console.log([taskk]);
+			userr.push.apply(userr,userr1);
+			
 			$scope.labels3 = $filter('orderBy')(userr, -Date );
-			$scope.data3 = [taskk];
+			$scope.data3 = [$filter('orderBy')(taskk, -Number )];
 			}
 		}
 
